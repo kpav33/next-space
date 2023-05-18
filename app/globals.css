@@ -46,8 +46,8 @@ label, textarea, input {
   margin-bottom: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
-}
+} */

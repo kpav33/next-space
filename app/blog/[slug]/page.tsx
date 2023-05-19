@@ -3,6 +3,7 @@
 // If we wanted to change caching on this page, we could export the dynamic variable with force-dynamic value to make sure that it always fetches the latest data
 // export const dynamic = "force-dynamic";
 // Or if we know the data is only updated occassionaly we can use the revalidate variable to update the cache every n seconds
+// Generally in Next 13 it is best to SSR as your first approach then look into using static params as an additional optimization, together with the revalidate option for ISR
 export const revalidate = 1200; // not necessary, just for ISR demonstration
 
 // This must corespond to the Post object that we created in the api content route
@@ -12,6 +13,9 @@ interface Post {
   slug: string;
 }
 
+// When content doesn't change often it makes sense to staticly generate all of those changes in advance so that they can be cached on the CDN for fast page loads
+// Use generateStaticParams which returns an object with parameters we want to render in advance, which in this case would be an object with all of the slug values for every available post, this function tells Next how to find your data so it can render it in advance
+// This approach is ideal for data that doesn't change often, like blog posts
 export async function generateStaticParams() {
   const posts: Post[] = await fetch("http://localhost:3000/api/content").then(
     (res) => res.json()

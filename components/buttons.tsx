@@ -16,7 +16,9 @@ export function SignInButton() {
     return (
       <Link href={`/dashboard`}>
         <Image
-          src={session.user?.image ?? "/mememan.webp"}
+          // Removed because it didn't work despite having the image path configured in next.config.js?
+          // src={session.user?.image ?? "/mememan.webp"}
+          src={"/mememan.webp"}
           width={32}
           height={32}
           alt="Your Name"

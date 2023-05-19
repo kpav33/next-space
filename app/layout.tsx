@@ -8,6 +8,7 @@
 import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import NavMenu from "./NavMenu";
+import AuthProvider from "./AuthProvider";
 
 const myFont = Open_Sans({ weight: "400", subsets: ["latin"] });
 
@@ -22,12 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={myFont.className}>
-        {/* By adding the NavMenu component here, it will be shared with all other pages and will be shown on every page in the entire application */}
-        <NavMenu />
-        <main>{children}</main>
-      </body>
-    </html>
+    // We couldn't use the SessionProvider component directly in the layout, because that component uses client side features, so we had to create a new separate client side component
+    <AuthProvider>
+      <html lang="en">
+        <body className={myFont.className}>
+          {/* By adding the NavMenu component here, it will be shared with all other pages and will be shown on every page in the entire application */}
+          <NavMenu />
+          <main>{children}</main>
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

@@ -2,6 +2,7 @@
 // This route will be available at /api/content route, like with creating pages, you determine the name of your route by the name of the folder in which you put the route.ts file
 
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
 
 const posts = [
   {
@@ -39,5 +40,14 @@ const posts = [
 // Create a GET endpoint by exporting a function that you name GET
 export async function GET() {
   // Inside the body of the function we can do whatever we want to do on the server and then return the data by using the NextResponse function
+
+  // We can also access the user data server side
+  const session = await getServerSession();
+
+  if (!session) {
+    // redirect or render something else
+    console.log("Not logged in.");
+  }
+
   return NextResponse.json(posts);
 }

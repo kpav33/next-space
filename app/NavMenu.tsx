@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styles from "./NavMenu.module.css";
 import Image from "next/image";
-// import { SignInButton, SignOutButton } from '../components/buttons';
-// import AuthCheck from '@/components/AuthCheck';
+import { SignInButton, SignOutButton } from "../components/buttons";
+import AuthCheck from "@/components/AuthCheck";
 
 // Since this component will only be used one time in the root layout file, we won't be keeping this component in the shared components folder, but rather in the app folder where it will be co-located with the root layout.tsx file.
 export default function NavMenu() {
@@ -28,15 +28,15 @@ export default function NavMenu() {
         <li>
           <Link href={"/users"}>Users</Link>
         </li>
-        {/* <li>
+        <li>
           <SignInButton />
-        </li> */}
+        </li>
 
-        {/* <li>
-        <AuthCheck>
+        <li>
+          <AuthCheck>
             <SignOutButton />
           </AuthCheck>
-        </li> */}
+        </li>
       </ul>
     </nav>
   );

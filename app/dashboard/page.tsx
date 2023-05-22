@@ -9,6 +9,7 @@ export default async function Dashboard() {
   // Get server session for current user, so non-users can't access this route
   // You need to pass authOptions in this version of next-auth here for it to work properly
   const session = await getServerSession(authOptions);
+  //   console.log(session);
 
   // If session is null redirect the user
   if (!session) {

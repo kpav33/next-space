@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 export default function AuthCheck({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
 
-  console.log(session, status);
+  // console.log(session, status);
 
   // Only show data if user is authenticated
   if (status === "authenticated") {
